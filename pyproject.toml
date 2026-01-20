@@ -1,0 +1,14 @@
+[project]
+name = "aloca-vaga"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "ruff>=0.14.13",
+]
+
+[dependency-groups]
+dev = [
+    "numpy>=2.4.1",
+]
