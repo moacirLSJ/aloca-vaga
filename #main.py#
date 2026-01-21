@@ -1,0 +1,41 @@
+"""
+Esse sistema se destina a distribuição automática de vagas entre os moradores de um condominio.
+A ordenção se da pela menor distancia percorrida para chegar a vaga.
+regras para localização:
+    a vaga ideal é a mais próxima possível do bloco do morador, na direção da portaria;
+    a distancia entre as vagas adjacentes é de 1 passo;
+    a distancia entre as vagas separadas por pavimento são 2 passos;
+    O layout do estacionamento é um grid não-simetrico de 8 colunas e 49 linhas.
+"""
+
+from typing import List
+import numpy as np
+from alocvx.fabricas.gerar_vaga import GerarVagaFactory
+from alocvx.entidades.vaga import Vaga
+from alocvx.entidades.morador import Morador
+from alocvx.fabricas.morador_vaga import MoradorVagaFactory
+
+
+# criando as vagas disponiveis e suas localizações5
+# mapas das vagas por bloco
+
+
+def main():
+    total_vagas = 258
+
+    moradores: List[Morador] = []
+    vagas_disponiveis = GerarVagaFactory().gerar_todas_vagas()
+    Vaga.vagas = vagas_disponiveis
+    vaga = list(filter(lambda v: v.numero == 30, vagas_disponiveis))[0]
+    print('vaga encontrada:',vaga)
+    moradores = MoradorVagaFactory().gerar_alocacao(vagas_disponiveis)
+    print(len(moradores))
+
+
+def passos_ate_vaga(morador: Morador, vaga: Vaga):
+    passos = 3
+    return passos
+
+
+if __name__ == "__main__":
+    main()
