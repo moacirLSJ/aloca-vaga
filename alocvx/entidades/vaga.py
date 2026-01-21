@@ -19,8 +19,8 @@ class Vaga:
                 }
         return {"ok": False, "message": "Vaga não encontrada"}
 
-    @staticmethod
-    def obter_vaga_pela_localizacao(localizacao: tuple) -> dict:
+    @classmethod
+    def obter_vaga_pela_localizacao(cls,localizacao: tuple) -> dict:
         for vaga in Vaga.vagas:
             if vaga.localizacao == localizacao:
                 return {
@@ -28,7 +28,7 @@ class Vaga:
                     "message": "Vaga encontrada",
                     "data": {"vaga": vaga},
                 }
-        return {"ok": False, "message": "Vaga não encontrada"}
+        return {"ok": False, "message": "Vaga não encontrada pela localização"}
 
     @staticmethod
     def calcular_distancia(vaga1: "Vaga", vaga2: "Vaga") -> dict:

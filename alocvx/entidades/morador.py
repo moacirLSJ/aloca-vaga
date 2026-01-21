@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from alocvx.entidades.vaga import Vaga
+from entidades.vaga import Vaga
 
 
 @dataclass
@@ -81,11 +81,15 @@ class Morador:
 
     @staticmethod
     def criar_morador(apartamento: int, bloco: int, vaga_alocada: Vaga):
-        localizacao_ideal = Morador.MAPA_VAGAS_IDEAL[bloco - 1]
-        vaga_ideal = Vaga.obter_vaga_pela_localizacao(localizacao_ideal)
+        localizacao_ideal = Morador.MAPA_VAGAS_IDEAL[bloco - 1][0]
+        resultado = Vaga.obter_vaga_pela_localizacao(localizacao_ideal)
+        if resultado['ok'] is False:
+            return resultado
+        vaga_ideal = resultado['data']['vaga']
         return Morador(
             bloco,
             apartamento,
             vaga_ideal=vaga_ideal,
             vaga_alocada=vaga_alocada,
         )
+ 

@@ -27,7 +27,9 @@ def main():
     vagas_disponiveis = GerarVagaFactory().gerar_todas_vagas()
     Vaga.vagas = vagas_disponiveis
     vaga = list(filter(lambda v: v.numero == 30, vagas_disponiveis))[0]
+    print('vaga encontrada:',vaga)
     moradores = MoradorVagaFactory().gerar_alocacao(vagas_disponiveis)
+    print(moradores[-5])
     print(len(moradores))
 
 

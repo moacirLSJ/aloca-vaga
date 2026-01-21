@@ -1,5 +1,5 @@
 from typing import List
-from alocvx.entidades.vaga import Vaga
+from entidades.vaga import Vaga
 
 
 class GerarVagaFactory:
