@@ -9,11 +9,11 @@ regras para localização:
 """
 
 from typing import List
+from alocvx.fabricas.gera_troca_vaga import TrocaVagaEngrenagemFabrica
 from alocvx.fabricas.gerar_vaga import GerarVagaFactory
 from alocvx.entidades.vaga import Vaga
 from alocvx.entidades.morador import Morador
 from alocvx.fabricas.morador_vaga import MoradorVagaFactory
-from alocvx.fabricas.gera_troca_vaga import TrocaVagaEngrenagemFabrica
 # criando as vagas disponiveis e suas localizações5
 # mapas das vagas por bloco
 
@@ -33,7 +33,7 @@ def main():
         total_epocas = te
         moradores = MoradorVagaFactory().gerar_alocacao(vagas_disponiveis)
         for epoca in range(total_epocas):
-            # moradores = TrocaVagaEngrenagemFabrica.criar_troca_vaga('VizinhoMaisDistanteEngrenagem', moradores).otimizar_alocacao()
+            moradores = TrocaVagaEngrenagemFabrica.criar_troca_vaga('VizinhoMaisDistanteEngrenagem', moradores).otimizar_alocacao()
             print(f'total passos ao final: {Morador.calcular_passos_moradores(moradores)}')
         # print('moradores e vagas alocadas:')
         # for morador in moradores:
