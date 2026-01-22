@@ -92,4 +92,5 @@ class Morador:
             vaga_ideal=vaga_ideal,
             vaga_alocada=vaga_alocada,
         )
+    def calcular_passo
  
