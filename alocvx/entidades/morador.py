@@ -11,78 +11,99 @@ class Morador:
     MAPA_VAGAS_IDEAL = [
         [
             # BLOCO 1
-            (0, 19),
+            20,
         ],
         [
             # BLOCO 2
-            (0, 30),
+            31,
         ],
         [
             # BLOCO 3
-            (0, 30),
+            31,
         ],
         [
             # BLOCO 4
-            (0, 39),
+            39,
         ],
         [
             # BLOCO 5
-            (0, 39),
+            39,
         ],
         [
             # BLOCO 6
-            (0, 48),
+            49,
         ],
         [
             # BLOCO 7
-            (0, 48),
+            49,
         ],
         [
             # BLOCO 8
-            (10, 48),
+           149,
         ],
         [
             # BLOCO 9
-            (10, 39),
+            158,
         ],
         [
             # BLOCO 10
-            (10, 30),
+            167,
         ],
         [
             # BLOCO 11
-            (10, 21),
+            176,
         ],
         [
             # BLOCO 12
-            (10, 8),
+            185,
         ],
         [
             # BLOCO 13
-            (10, 0),
+            195,
         ],
         [
             # BLOCO 14
-            (10, 28),
+            172,
         ],
         [
             # BLOCO 15
-            (10, 28),
+            172,
         ],
         [
             # BLOCO 16
-            (10, 34),
+            163,
         ],
         [
             # BLOCO 17
-            (10, 34),
+            163,
         ],
     ]
 
     @staticmethod
+    def obter_detalhes_morador(bloco: int, apt: int, moradores: list["Morador"]) -> dict:
+        morador = next(filter(lambda m: m.bloco == bloco and m.apt == apt, moradores), None)
+        if morador is None:
+            return {
+                "ok": False,
+                "message": "Morador não encontrado",
+                "data": None,
+            }
+        return {
+            "ok": True,
+            "message": "Morador encontrado",
+            "data": {
+                "bloco": bloco,
+                "apartamento": apt,
+                "vaga_ideal": morador.vaga_ideal,
+                "vaga_alocada": morador.vaga_alocada,
+                'passos_ate_vaga': morador.calcular_distancia_passos()["data"],
+            },
+        }
+
+    @staticmethod
     def criar_morador(apartamento: int, bloco: int, vaga_alocada: Vaga):
         localizacao_ideal = Morador.MAPA_VAGAS_IDEAL[bloco - 1][0]
-        resultado = Vaga.obter_vaga_pela_localizacao(localizacao_ideal)
+        resultado = Vaga.obter_vaga_pelo_numero(localizacao_ideal)
         if resultado["ok"] is False:
             return resultado
         vaga_ideal = resultado["data"]["vaga"]
@@ -92,6 +113,15 @@ class Morador:
             vaga_ideal=vaga_ideal,
             vaga_alocada=vaga_alocada,
         )
+
+    @staticmethod
+    def calcular_passos_moradores(moradores:list["Morador"]) -> int:
+        total_passos = 0
+        for morador in moradores:
+            resultado = morador.calcular_distancia_passos()
+            if resultado["ok"]:
+                total_passos += resultado["data"]
+        return total_passos
 
     def calcular_distancia_passos(self):
         try:
