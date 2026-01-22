@@ -39,7 +39,7 @@ class Morador:
         ],
         [
             # BLOCO 8
-           149,
+            149,
         ],
         [
             # BLOCO 9
@@ -80,25 +80,19 @@ class Morador:
     ]
 
     @staticmethod
-    def obter_detalhes_morador(bloco: int, apt: int, moradores: list["Morador"]) -> dict:
-        morador = next(filter(lambda m: m.bloco == bloco and m.apt == apt, moradores), None)
+    def obter_detalhes_morador(
+        bloco: int, apt: int, moradores: list["Morador"]
+    ) -> dict:
+        morador = next(
+            filter(lambda m: m.bloco == bloco and m.apt == apt, moradores), None
+        )
         if morador is None:
             return {
                 "ok": False,
                 "message": "Morador não encontrado",
                 "data": None,
             }
-        return {
-            "ok": True,
-            "message": "Morador encontrado",
-            "data": {
-                "bloco": bloco,
-                "apartamento": apt,
-                "vaga_ideal": morador.vaga_ideal,
-                "vaga_alocada": morador.vaga_alocada,
-                'passos_ate_vaga': morador.calcular_distancia_passos()["data"],
-            },
-        }
+        return {"ok": True, "message": "Morador encontrado", "data": morador}
 
     @staticmethod
     def criar_morador(apartamento: int, bloco: int, vaga_alocada: Vaga):
@@ -115,7 +109,7 @@ class Morador:
         )
 
     @staticmethod
-    def calcular_passos_moradores(moradores:list["Morador"]) -> int:
+    def calcular_passos_moradores(moradores: list["Morador"]) -> int:
         total_passos = 0
         for morador in moradores:
             resultado = morador.calcular_distancia_passos()
@@ -144,3 +138,6 @@ class Morador:
                 "mensagem": f"Erro ao calcular distância: {str(e)}",
                 "data": None,
             }
+
+    def __repr__(self) -> str:
+        return f"Morador(bl={self.bloco}, apt={self.apt}, vi={self.vaga_ideal}, va={self.vaga_alocada} passos={self.calcular_distancia_passos()['data']})"
