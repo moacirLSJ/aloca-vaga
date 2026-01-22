@@ -21,11 +21,11 @@ class VizinhoMaisDistanteEngrenagem(TrocaVagaEngrenagem):
                 melhor_moradores, key=lambda m: m.calcular_distancia_passos()['data']
             )
 
+            progress_bar(
+                morador_mais_distante.apt * len(melhor_moradores),
+                len(melhor_moradores) * len(melhor_moradores),
+            )
             for morador in melhor_moradores:
-                progress_bar(
-                    morador_mais_distante.apt * len(melhor_moradores) + morador.apt,
-                    len(melhor_moradores) * len(melhor_moradores),
-                )
                 if morador == morador_mais_distante:
                     continue
 
