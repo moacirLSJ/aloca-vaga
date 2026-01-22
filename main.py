@@ -35,9 +35,6 @@ def main():
         for epoca in range(total_epocas):
             moradores = TrocaVagaEngrenagemFabrica.criar_troca_vaga('VizinhoMaisDistanteEngrenagem', moradores).otimizar_alocacao()
             print(f'total passos ao final: {Morador.calcular_passos_moradores(moradores)}')
-        # print('moradores e vagas alocadas:')
-        # for morador in moradores:
-        #     print(f'  {morador}')
     print( Morador.obter_detalhes_morador(7,5, moradores)['data'])
     print( Morador.obter_detalhes_morador(1,5, moradores)['data'])
     print( Morador.obter_detalhes_morador(8,3, moradores)['data'])
