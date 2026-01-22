@@ -33,10 +33,5 @@ def main():
     print(len(moradores))
 
 
-def passos_ate_vaga(morador: Morador, vaga: Vaga):
-    passos = 3
-    return passos
-
-
 if __name__ == "__main__":
     main()
