@@ -83,14 +83,34 @@ class Morador:
     def criar_morador(apartamento: int, bloco: int, vaga_alocada: Vaga):
         localizacao_ideal = Morador.MAPA_VAGAS_IDEAL[bloco - 1][0]
         resultado = Vaga.obter_vaga_pela_localizacao(localizacao_ideal)
-        if resultado['ok'] is False:
+        if resultado["ok"] is False:
             return resultado
-        vaga_ideal = resultado['data']['vaga']
+        vaga_ideal = resultado["data"]["vaga"]
         return Morador(
             bloco,
             apartamento,
             vaga_ideal=vaga_ideal,
             vaga_alocada=vaga_alocada,
         )
-    def calcular_passo
- 
+
+    def calcular_distancia_passos(self):
+        try:
+            pos_ideal = self.vaga_ideal.localizacao
+            pos_alocada = self.vaga_alocada.localizacao
+
+            distancia_colunas = abs(pos_ideal[1] - pos_alocada[1])
+            distancia_linhas = abs(pos_ideal[0] - pos_alocada[0])
+
+            total_passos = distancia_colunas + distancia_linhas
+
+            return {
+                "ok": True,
+                "mensagem": "Distância calculada com sucesso",
+                "data": total_passos,
+            }
+        except Exception as e:
+            return {
+                "ok": False,
+                "mensagem": f"Erro ao calcular distância: {str(e)}",
+                "data": None,
+            }
