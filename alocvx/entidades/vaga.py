@@ -40,3 +40,5 @@ class Vaga:
                 + abs(vaga1.localizacao[1] - vaga2.localizacao[1])
             },
         }
+    def __repr__(self) -> str:
+        return f"Vaga(num={self.numero}, loc={self.localizacao})"
