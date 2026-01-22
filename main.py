@@ -27,12 +27,10 @@ def main():
     moradores: List[Morador] = []
     vagas_disponiveis = GerarVagaFactory().gerar_todas_vagas()
     Vaga.vagas = vagas_disponiveis
-    vaga = list(filter(lambda v: v.numero == 30, vagas_disponiveis))[0]
-    print('vaga encontrada:',vaga)
     for te in [1]:
         total_epocas = te
         moradores = MoradorVagaFactory().gerar_alocacao(vagas_disponiveis)
-        for epoca in range(total_epocas):
+        for _ in range(total_epocas):
             moradores = TrocaVagaEngrenagemFabrica.criar_troca_vaga('VizinhoMaisDistanteEngrenagem', moradores).otimizar_alocacao()
             print(f'total passos ao final: {Morador.calcular_passos_moradores(moradores)}')
     print( Morador.obter_detalhes_morador(7,5, moradores)['data'])
