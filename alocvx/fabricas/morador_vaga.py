@@ -1,6 +1,6 @@
 from typing import List
-from entidades.morador import Morador
-from entidades.vaga import Vaga
+from alocvx.entidades.morador import Morador
+from alocvx.entidades.vaga import Vaga
 import numpy as np
 
 

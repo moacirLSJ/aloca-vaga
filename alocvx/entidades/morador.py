@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from entidades.vaga import Vaga
+from .vaga import Vaga
 
 
 @dataclass
