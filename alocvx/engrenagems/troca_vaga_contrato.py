@@ -1,5 +1,4 @@
 from alocvx.entidades.morador import Morador
-from alocvx.utilidades.progressbar import progress_bar
 from abc import ABC, abstractmethod
 from typing import List
 
