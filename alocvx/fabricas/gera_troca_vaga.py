@@ -20,5 +20,11 @@ class TrocaVagaEngrenagemFabrica:
                     fromlist=[tipo_engrenagem],
                 )
                 return classe.VizinhoMaisDistanteEngrenagem(moradores)
+            case "PermutaVagaAleatorio":
+                classe = __import__(
+                    "alocvx.engrenagens.permuta_vaga_aleatorio",
+                    fromlist=[tipo_engrenagem],
+                )
+                return classe.PermutaVagaAleatorio(moradores)
             case _:
                 raise ValueError(f"Tipo de engrenagem desconhecido: {tipo_engrenagem}")
