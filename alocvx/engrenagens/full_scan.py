@@ -1,7 +1,6 @@
 from alocvx.entidades.morador import Morador
 from alocvx.utilidades.progressbar import progress_bar
-from alocvx.engrenagems.troca_vaga_contrato import TrocaVagaEngrenagem
-
+from alocvx.engrenagens.troca_vaga_contrato import TrocaVagaEngrenagem
 
 
 class FullScanEngrenagem(TrocaVagaEngrenagem):
@@ -15,12 +14,15 @@ class FullScanEngrenagem(TrocaVagaEngrenagem):
         melhor_moradores = self.moradores[:]
         melhor_passos = Morador.calcular_passos_moradores(melhor_moradores)
         melhor_encontrado = True
-        
+
         while melhor_encontrado:
             melhor_encontrado = False
             for i in range(len(melhor_moradores)):
                 for j in range(i + 1, len(melhor_moradores)):
-                    progress_bar(i * len(melhor_moradores) + j, len(melhor_moradores) * len(melhor_moradores))
+                    progress_bar(
+                        i * len(melhor_moradores) + j,
+                        len(melhor_moradores) * len(melhor_moradores),
+                    )
                     morador1 = melhor_moradores[i]
                     morador2 = melhor_moradores[j]
 
