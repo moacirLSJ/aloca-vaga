@@ -1,6 +1,7 @@
 from alocvx.entidades.morador import Morador
 from alocvx.utilidades.progressbar import progress_bar
-from alocvx.engrenagems.troca_vaga_contrato import TrocaVagaEngrenagem
+from alocvx.engrenagens.troca_vaga_contrato import TrocaVagaEngrenagem
+
 
 class VizinhoMaisDistanteEngrenagem(TrocaVagaEngrenagem):
     def __init__(self, moradores: list["Morador"]):
@@ -13,12 +14,12 @@ class VizinhoMaisDistanteEngrenagem(TrocaVagaEngrenagem):
         melhor_moradores = self.moradores[:]
         melhor_passos = Morador.calcular_passos_moradores(melhor_moradores)
         melhor_encontrado = True
-    
+
         while melhor_encontrado:
             melhor_encontrado = False
             # encontrar o morador com o maior número de passos
             morador_mais_distante = max(
-                melhor_moradores, key=lambda m: m.calcular_distancia_passos()['data']
+                melhor_moradores, key=lambda m: m.calcular_distancia_passos()["data"]
             )
 
             progress_bar(
