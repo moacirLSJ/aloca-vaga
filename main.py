@@ -31,14 +31,26 @@ def main():
         total_epocas = te
         moradores = MoradorVagaFactory().gerar_alocacao(vagas_disponiveis)
         for _ in range(total_epocas):
-            moradores = TrocaVagaEngrenagemFabrica.criar_troca_vaga('VizinhoMaisDistanteEngrenagem', moradores).otimizar_alocacao()
-            print(f'total passos ao final: {Morador.calcular_passos_moradores(moradores)}')
-    print( Morador.obter_detalhes_morador(7,5, moradores)['data'])
-    print( Morador.obter_detalhes_morador(1,5, moradores)['data'])
-    print( Morador.obter_detalhes_morador(8,3, moradores)['data'])
-    print( Morador.obter_detalhes_morador(10,1, moradores)['data'])
-    print( Morador.obter_detalhes_morador(12,16, moradores)['data'])
-    print( Morador.obter_detalhes_morador(15,10, moradores)['data'])
-    print( Morador.obter_detalhes_morador(17,1, moradores)['data'])
+            nome_engrenagem = "PermutaVagaAleatorio"
+            # nome_engrenagem = "VizinhoMaisDistanteEngrenagem"
+            # nome_engrenagem = "FullScanEngrenagem"
+            moradores = TrocaVagaEngrenagemFabrica.criar_troca_vaga(
+                nome_engrenagem,
+                moradores,
+            ).otimizar_alocacao()
+            print(
+                f"total passos ao final: {Morador.calcular_passos_moradores(moradores)}"
+            )
+    print(Morador.obter_detalhes_morador(5, 12, moradores)["data"])
+    print(Morador.obter_detalhes_morador(7, 1, moradores)["data"])
+    print(Morador.obter_detalhes_morador(6, 12, moradores)["data"])
+    print(Morador.obter_detalhes_morador(1, 5, moradores)["data"])
+    print(Morador.obter_detalhes_morador(8, 3, moradores)["data"])
+    print(Morador.obter_detalhes_morador(10, 1, moradores)["data"])
+    print(Morador.obter_detalhes_morador(12, 16, moradores)["data"])
+    print(Morador.obter_detalhes_morador(15, 10, moradores)["data"])
+    print(Morador.obter_detalhes_morador(17, 1, moradores)["data"])
+
+
 if __name__ == "__main__":
     main()
